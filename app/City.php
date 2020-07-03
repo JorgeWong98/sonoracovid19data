@@ -21,4 +21,11 @@ class City extends Model
     {
         return ucwords(strtolower($value));
     }
+
+     // -------- Relaciones ------------
+
+    public function registries()
+    {
+        return $this->hasMany('App\Registry');
+    }
 }
