@@ -7,12 +7,21 @@
     <link rel="stylesheet" href="/css/normalize.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
 
     @yield('styles')
 
     <title>Hello</title>
 </head>
 <body>
+
+    <div class="container-fluid">
+        <div class="container">
+            <div class="col-md-12">
+                <h2>Datos Covid-19 Sonora</h2>
+            </div>
+        </div>
+    </div>
 
     @yield('content')
 

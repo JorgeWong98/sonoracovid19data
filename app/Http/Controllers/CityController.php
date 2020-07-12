@@ -39,7 +39,7 @@ class CityController extends Controller
             else {
                 $city['registries'] = $city->registries;
             }
-            return $city;
+            return response()->json($city, 200);
         } catch (\Throwable $th) {
             $message = "";
             switch ($th->getCode()) {

@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/data', function () {
-    return view('data');
+Route::get('/ciudades', function () {
+    return view('city');
+});
+
+Route::get('ciudades/comparar', function (){
+    return view('compare');
 });
