@@ -17,9 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/ciudades', function () {
-    return view('city');
-});
+Route::get('/ciudades/{name}', 'CityController@show');
 
 Route::get('ciudades/comparar', function (){
     return view('compare');

@@ -1,8 +1,45 @@
-#graph-container-one{
-    margin-bottom: 55px;
+.text{
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.header{
+    margin-bottom: 45px;
 }
 
 hr{
-    width: 100%;
-    margin-bottom: 50px;
+    margin: 45px 0;
+    background: #000;
+}
+
+table{
+    text-align: center;
+}
+
+.inc{
+    color: green;
+    font-weight: 700;
+}
+
+.dec{
+    color: red;
+    font-weight: 700;
+}
+
+.data{
+    display:flex;
+    justify-content: space-around;
+}
+
+.data-item{
+    display: block;
+    width:45%;
+    padding: 20px 0;
+    border: 2px solid #000;
+    border-radius: 5px;
+    background: #0096CC;
+    color: #fff;
+    font-weight: 700;
+    font-size:20px;
+    text-align: center;
 }

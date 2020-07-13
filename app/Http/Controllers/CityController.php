@@ -4,53 +4,103 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\City;
-use App\Registry;
 
 class CityController extends Controller
 {
-    function getAll()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $cities =  City::all();
-        return $cities;
+        //
     }
 
-    function find($id)
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($name)
     {
         try {
-            $city = City::findOrFail($id);
-            return $city;
+            $name = strtoupper($name);
+            $city = City::where('name', $name)->firstOrFail();
+            for ($i=0; $i < $city->registries->count(); $i++) {
+                $currentRegistry = $city->registries[$i];
+                if ($i == $city->registries->count() -1) {
+                    $currentRegistry['diffInfections'] = 0;
+                    $currentRegistry['diffDeaths'] = 0;
+                }
+                else{
+                    $lastRegistry = $city->registries[$i + 1];
+                    $diffInfections = $currentRegistry->infections - $lastRegistry->infections;
+                    $diffDeaths = $currentRegistry->deaths - $lastRegistry->deaths;
+
+                    $currentRegistry['diffDeaths'] = ($diffDeaths >= 0) ? "+$diffDeaths" : $diffDeaths;
+                    $currentRegistry['diffInfections'] = ($diffInfections >= 0) ? "+$diffInfections" : $diffInfections;
+                }
+            }
+            return view('city', compact('city'));
         } catch (\Throwable $th) {
-            return response('Id de la ciudad invalido.', 400);
+            return $th->getMessage();
         }
     }
 
-    function getCityData(Request $request, $id)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        try {
-            $city = City::findOrFail($id);
-            $data;
-            $lastDays = request()->query('lastDays');
-            if (!is_null($lastDays) && ctype_digit($lastDays)) {
-                $city['registries'] = Registry::where('city_id', $city->id)
-                                ->orderBy('date', 'DESC')
-                                ->take($lastDays)
-                                ->get();
-            }
-            else {
-                $city['registries'] = $city->registries;
-            }
-            return response()->json($city, 200);
-        } catch (\Throwable $th) {
-            $message = "";
-            switch ($th->getCode()) {
-                case 0:
-                    $message = "Id de la ciudad invalido.";
-                    break;
-                default:
-                    $massage = "Codigo de error: " . $th->getCode();
-                    break;
-            }
-            return response($message, 400);
-        }
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }
