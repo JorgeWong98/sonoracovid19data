@@ -7,17 +7,17 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="header">
                     <p class="text">
                         Datos al {{$city->registries[0]->getFormattedDate("l\\, d \\d\\e F \\d\\e Y")}}.
                     </p>
                     <div class="data">
                         <span class="data-item">
-                            Infecciones: {{number_format($city->getTotal('infections'))}}
+                            <i class="fas fa-head-side-virus"></i> Casos: {{number_format($city->getTotal('infections'))}}
                         </span>
                         <span class="data-item">
-                            Defunciones: {{number_format($city->getTotal('deaths'))}}
+                            <i class="fas fa-exclamation-triangle"></i> Defunciones: {{number_format($city->getTotal('deaths'))}}
                         </span>
                     </div>
                 </div>
@@ -35,21 +35,21 @@
                 <canvas id="chartLine"></canvas>
                 </div>
                 <hr>
-                <div class="row">
+                <div class="row table-container">
                     <div class="col-md-12">
                         <p class="text">
-                            Ultimos datos de la ciudad.
+                            Datos de los últimos 14 días de la ciudad.
                         </p>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Infectados</th>
-                                    <th scope="col">Variacion</th>
-                                    <th scope="col">Defunciones</th>
-                                    <th scope="col">Variacion</th>
+                                    <th scope="col"><i class="far fa-calendar-alt"></i> Fecha</th>
+                                    <th scope="col"><i class="fas fa-head-side-virus"></i> Casos</th>
+                                    <th scope="col"><i class="fas fa-arrows-alt-v"></i> Variacion</th>
+                                    <th scope="col"><i class="fas fa-exclamation-triangle"></i> Defunciones</th>
+                                    <th scope="col"><i class="fas fa-arrows-alt-v"></i> Variacion</th>
                                 </tr>
                             </thead>
                             <tbody>

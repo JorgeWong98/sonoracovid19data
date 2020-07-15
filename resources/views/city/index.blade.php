@@ -9,8 +9,8 @@
     <div class="row">
         <div class="col-md-12">
             <p class="text">
-                Ultimos datos y acumulados de las ciudades de Sonora. <br>
-                Se esta trabajando para incluir las demas ciudades de Sonora.
+                Últimos datos y acumulados de las ciudades de Sonora. <br>
+                Se está trabajando para incluir las demás ciudades de Sonora.
             </p>
             <table class="table table-bordered table-hover">
                 <thead>
@@ -20,19 +20,19 @@
                         <th colspan="3">Acumulado</th>
                     </tr>
                     <tr>
-                        <th scope="col">Ciudad</th>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Casos</th>
-                        <th scope="col">Defunciones</th>
-                        <th scope="col">Casos</th>
-                        <th scope="col">Defunciones</th>
-                        <th scope="col">Letalidad</th>
+                        <th scope="col"><i class="fas fa-city"></i> Ciudad</th>
+                        <th scope="col"><i class="far fa-calendar-alt"></i> Fecha</th>
+                        <th scope="col"><i class="fas fa-head-side-virus"></i> Casos</th>
+                        <th scope="col"><i class="fas fa-exclamation-triangle"></i> Defunciones</th>
+                        <th scope="col"><i class="fas fa-head-side-virus"></i> Casos</th>
+                        <th scope="col"><i class="fas fa-exclamation-triangle"></i> Defunciones</th>
+                        <th scope="col"><i class="fas fa-percentage"></i> de Letalidad</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($cities as $city)
                         <tr class='clickable-row' data-href='ciudades/{{strtolower($city->name)}}'>
-                            <td>{{$city->name}}</td>
+                            <td><i class="fas fa-external-link-alt"></i> - {{$city->name}}</td>
                             <td>{{$city->registries[0]->getFormattedDate('d/F')}}</td>
                             <td>{{$city->registries[0]->infections}}</td>
                             <td>{{$city->registries[0]->deaths}}</td>
@@ -49,6 +49,8 @@
                     @endforeach
                 </tbody>
             </table>
+            <p class="minor">* Puede acceder a los datos de cada ciudad dando clic en su respectivo registro.</p>
+            <br>
             <p class="text">
                 Gráfica comparativa.
             </p>

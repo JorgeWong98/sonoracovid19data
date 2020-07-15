@@ -30,11 +30,19 @@ table{
     display: block;
     width:45%;
     padding: 20px 0;
-    border: 2px solid #000;
-    border-radius: 5px;
+    /* border: 1px solid #000;
+    border-radius: 5px; */
     background: #0096CC;
     color: #fff;
     font-weight: 700;
     font-size:20px;
     text-align: center;
+    -webkit-box-shadow: 10px 10px 29px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 29px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 29px 0px rgba(0,0,0,0.75);
+}
+
+.table-container{
+    display: flex;
+    justify-content: center;
 }

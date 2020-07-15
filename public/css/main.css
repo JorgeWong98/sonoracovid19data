@@ -2,8 +2,19 @@
     font-family: 'Roboto', sans-serif;
 }
 
-h2{
+header h2{
     font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+header h2 a{
+    color: #fff;
+    text-decoration: none !important;
+}
+
+header h2 a:hover{
+    color: #fff;
 }
 
 .container-fluid{
@@ -11,4 +22,40 @@ h2{
     color: white;
     padding: 15px 0;
     margin-bottom: 35px;
+}
+
+.nav-link{
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.nav-link:hover{
+    color: white;
+}
+
+footer.container-fluid{
+    margin-top: 50px;
+    margin-bottom: 0;
+    font-size: 18px;
+    padding: 25px 0;
+}
+
+footer.container-fluid .container div{
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+}
+
+footer.container-fluid .container div span a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 2px dashed #fff;
+    padding-bottom: .5px;
+}
+
+.text{
+    font-size: 18px;
+    margin-bottom: 20px;
 }
