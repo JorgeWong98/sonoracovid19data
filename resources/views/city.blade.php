@@ -9,6 +9,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="header">
+                    <h2>Datos de la ciudad de <strong>{{$city->name}}</strong>.</h2><br>
                     <p class="text">
                         Datos al {{$city->registries[0]->getFormattedDate("l\\, d \\d\\e F \\d\\e Y")}}.
                     </p>
@@ -19,13 +20,21 @@
                         <span class="data-item">
                             <i class="fas fa-exclamation-triangle"></i> Defunciones: {{number_format($city->getTotal('deaths'))}}
                         </span>
+                        <span class="data-item">
+                            <i class="fas fa-percentage"></i> de Letalidad:
+                            @php
+                                $lethality = $city->getTotal('deaths') /  $city->getTotal('infections') * 100;
+                                $format = number_format($lethality, 2);
+                                echo("$format");
+                            @endphp
+                        </span>
                     </div>
                 </div>
                 <div class="graph-container">
                     <input type="hidden" id="city_id" value="{{$city->id}}">
                 <p class="text">
-                    Datos de la ciudad de <strong>{{$city->name}}</strong>.
-                    Periodo: Últimos
+
+                    Datos graficados diarios. Periodo: Últimos
                     <select class="form-control" style="width: auto; display:inline-block" id="period">
                         <option value="7" selected>7 días</option>
                         <option value="14">14 días</option>
@@ -38,7 +47,7 @@
                 <div class="row table-container">
                     <div class="col-md-12">
                         <p class="text">
-                            Datos de los últimos 14 días de la ciudad.
+                            Datos de los últimos 10 días de la ciudad.
                         </p>
                     </div>
                     <div class="col-md-8">
@@ -53,7 +62,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for ($i = 0; $i <= 7; $i++)
+                                @for ($i = 0; $i <= 9; $i++)
                                     <tr>
                                         <td scope="row">{{ $city->registries[$i]->getFormattedDate("d/F/Y") }}</td>
                                         <td>{{$city->registries[$i]->infections}}</td>

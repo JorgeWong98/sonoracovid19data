@@ -28,10 +28,8 @@ table{
 
 .data-item{
     display: block;
-    width:45%;
+    width:30%;
     padding: 20px 0;
-    /* border: 1px solid #000;
-    border-radius: 5px; */
     background: #0096CC;
     color: #fff;
     font-weight: 700;

@@ -52,7 +52,7 @@
             <p class="minor">* Puede acceder a los datos de cada ciudad dando clic en su respectivo registro.</p>
             <br>
             <p class="text">
-                Gráfica comparativa.
+                Gráfica comparativa de los datos acumulados.
             </p>
             <canvas id="chartBar"></canvas>
         </div>

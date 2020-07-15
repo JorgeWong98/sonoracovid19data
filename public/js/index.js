@@ -18,7 +18,7 @@ var myBarChart = new Chart(ctx, {
         labels: cities.map(({ name }) => name),
         datasets: [
             {
-                label: "Infectados",
+                label: "Casos",
                 backgroundColor: 'rgb(70, 85, 132)',
                 borderColor: 'rgb(70, 85, 132)',
                 data: cities.map(({ infections }) => infections)

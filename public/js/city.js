@@ -50,11 +50,12 @@ const updateChartOne = (data) => {
                 data: deaths
             },
             {
-                label: 'Contagios',
+                label: 'Casos',
                 backgroundColor: 'rgb(70, 85, 132)',
                 borderColor: 'rgb(70, 85, 132)',
                 data: infections
             },
+
             ]
         },
         options :  {
