@@ -14,10 +14,10 @@
                     </p>
                     <div class="data">
                         <span class="data-item">
-                            Infecciones: {{$city->registries->sum('infections')}}
+                            Infecciones: {{number_format($city->getTotal('infections'))}}
                         </span>
                         <span class="data-item">
-                            Defunciones: {{$city->registries->sum('deaths')}}
+                            Defunciones: {{number_format($city->getTotal('deaths'))}}
                         </span>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                         </p>
                     </div>
                     <div class="col-md-12">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">Fecha</th>

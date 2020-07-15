@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\City;
 
 class CityController extends Controller
@@ -14,7 +15,22 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        $cities = City::select(
+            'cities.id',
+            'cities.name',
+            DB::raw('sum(registries.infections) as infections'),
+            DB::raw('sum(registries.deaths) as deaths')
+            )
+                ->join('registries', 'cities.id', '=', 'registries.city_id')
+                ->groupBy('cities.id', 'cities.name')
+                ->orderBy('deaths', 'DESC')
+                ->get();
+
+        // return $cities[0]->registries;
+        // // $cities = City::with(['infections' => function ($q) {
+        // //     $q->orderBy('whateverField', 'asc/desc');
+        // //   }])->find($schoolId);
+        return view('city.index', compact('cities'));
     }
 
     /**

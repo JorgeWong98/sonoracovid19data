@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/ciudades', 'CityController@index');
 Route::get('/ciudades/{name}', 'CityController@show');
 
 Route::get('ciudades/comparar', function (){

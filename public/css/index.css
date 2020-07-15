@@ -1,0 +1,28 @@
+.col-md-12{
+    display: flex;
+    flex-direction: column;
+}
+
+table.table{
+    text-align: center;
+    /* width: 70%; */
+    align-self: center;
+    margin-bottom: 50px;
+}
+
+table.table tbody tr td a {
+    text-decoration: none;
+}
+
+canvas{
+    margin-bottom: 50px;
+}
+
+.text{
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.clickable-row{
+    cursor: pointer;
+}

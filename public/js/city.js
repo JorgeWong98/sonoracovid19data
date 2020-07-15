@@ -57,5 +57,32 @@ const updateChartOne = (data) => {
             },
             ]
         },
+        options :  {
+            scales: {
+                xAxes: [{
+                    afterTickToLabelConversion: function(data){
+                        var xLabels = data.ticks;
+                        const number = Math.round(xLabels.length / 3);
+                        if (xLabels.length > 14) {
+                            xLabels.forEach(function (labels, i) {
+                                if (i != 0 && i != xLabels.length - 1) {
+                                    if (i % number != 0){
+                                        // console.log(`${i}/${number} = ${i%number}`);
+                                        xLabels[i] = '';
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    ticks: {
+                        // Make labels vertical
+                        // https://stackoverflow.com/questions/28031873/make-x-label-horizontal-in-chartjs
+                        autoSkip: false,
+                    maxRotation: 0,
+                    minRotation: 0
+                      }
+                }]
+            }
+        }
     });
 }
