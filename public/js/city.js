@@ -1,7 +1,5 @@
 var ctx = document.getElementById('chartLine').getContext('2d');
 
-const URL_API = "http://127.0.0.1:8000/api/cities";
-
 const selectPeriod = document.getElementById('period');
 const selectCity = document.getElementById('city_id');
 let period_value = selectPeriod.value, city_value = selectCity.value;

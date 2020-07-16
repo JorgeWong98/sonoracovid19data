@@ -99,5 +99,8 @@
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="/js/helpers.js"></script>
+    <script>
+        const URL_API = "{{env('APP_URL')}}/api/cities";
+    </script>
     <script src="/js/city.js"></script>
 @endsection
