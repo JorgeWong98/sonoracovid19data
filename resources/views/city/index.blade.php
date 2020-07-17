@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-12">
             <p class="text">
-                Últimos datos y acumulados de las ciudades de Sonora. Se está trabajando para incluir el resto ciudades del estado.
+                Últimos datos y acumulados de las ciudades de Sonora. Se está trabajando para incluir el resto de ciudades del estado.
             </p>
             <p class="text">
                 Puede acceder a los datos de cada ciudad dando clic en su respectivo registro.
