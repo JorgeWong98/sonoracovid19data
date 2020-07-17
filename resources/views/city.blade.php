@@ -50,7 +50,7 @@
                             Datos de los últimos 10 días de la ciudad.
                         </p>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8 table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>

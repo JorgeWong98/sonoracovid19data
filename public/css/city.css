@@ -44,3 +44,24 @@ table{
     display: flex;
     justify-content: center;
 }
+
+@media only screen and (max-width: 767px){
+    .header h2{
+        display:block;
+        text-align: center;
+    }
+    .data{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .data-item{
+        width:80%;
+        font-size:25px;
+    }
+
+    .data-item:nth-child(-n+2){
+        margin-bottom: 25px;
+    }
+
+}
