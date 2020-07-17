@@ -12,6 +12,8 @@
 
     @yield('styles')
 
+    <script data-ad-client="ca-pub-6022170660362952" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
     <title>Datos Covid-19 Sonora</title>
 </head>
 <body>

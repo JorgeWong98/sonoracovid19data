@@ -82,8 +82,9 @@ class CityController extends Controller
             }
             return view('city', compact('city'));
         } catch (\Throwable $th) {
-            return $th->getMessage();
+            abort(404);
         }
+
     }
 
     /**
