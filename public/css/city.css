@@ -35,14 +35,20 @@ table{
     font-weight: 700;
     font-size:20px;
     text-align: center;
-    -webkit-box-shadow: 10px 10px 29px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 29px 0px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 29px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
 }
 
 .table-container{
     display: flex;
     justify-content: center;
+}
+
+.underline{
+    padding-bottom: .5px;
+    border-bottom: 2px dashed #000 !important;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 767px){

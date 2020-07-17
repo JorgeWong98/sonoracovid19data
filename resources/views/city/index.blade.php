@@ -9,15 +9,17 @@
     <div class="row">
         <div class="col-md-12">
             <p class="text">
-                Últimos datos y acumulados de las ciudades de Sonora. <br>
-                Se está trabajando para incluir las demás ciudades del estado.
+                Últimos datos y acumulados de las ciudades de Sonora. Se está trabajando para incluir el resto ciudades del estado.
+            </p>
+            <p class="text">
+                Puede acceder a los datos de cada ciudad dando clic en su respectivo registro.
             </p>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th colspan="1"></th>
-                            <th colspan="3">Nuevos</th>
+                            <th colspan="3">Último registro</th>
                             <th colspan="3">Acumulado</th>
                         </tr>
                         <tr>
@@ -34,7 +36,7 @@
                         @foreach ($cities as $city)
                             <tr class='clickable-row' data-href='ciudades/{{strtolower($city->name)}}'>
                                 <td><i class="fas fa-external-link-alt"></i> - {{$city->name}}</td>
-                                <td>{{$city->registries[0]->getFormattedDate('d/F')}}</td>
+                                <td>{{$city->registries[0]->getFormattedDate('d-F-Y')}}</td>
                                 <td>{{$city->registries[0]->infections}}</td>
                                 <td>{{$city->registries[0]->deaths}}</td>
                                 <td>{{number_format($city->getTotal('infections'))}}</td>
@@ -51,7 +53,7 @@
                     </tbody>
                 </table>
             </div>
-            <p class="minor">* Puede acceder a los datos de cada ciudad dando clic en su respectivo registro.</p>
+            <br>
             <br>
             <p class="text">
                 Gráfica comparativa de los datos acumulados.

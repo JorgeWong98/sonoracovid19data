@@ -35,7 +35,7 @@
                     Pagina diseñada: <i class="fab fa-twitter-square"></i> <a href="https://twitter.com/JorgeLSWong" target="_blank">@JorgeLSWong</a>
                 </span>
                 <span class="item">
-                    Todos los datos se recopilan de <i class="fab fa-twitter-square"></i> <a href="https://twitter.com/ssaludsonora" target="_blank">@SaludSonora</a>
+                    Datos recopilados de <i class="fab fa-twitter-square"></i> <a href="https://twitter.com/ssaludsonora" target="_blank">@SaludSonora</a>
                 </span>
             </div>
         </div>

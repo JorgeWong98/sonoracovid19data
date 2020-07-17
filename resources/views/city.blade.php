@@ -54,17 +54,28 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
+                                    <th colspan="1"></th>
+                                    <th colspan="2"><i class="fas fa-head-side-virus"></i> Casos</th>
+                                    <th colspan="2"><i class="fas fa-exclamation-triangle"></i> Defunciones</th>
+                                </tr>
+                                <tr>
                                     <th scope="col"><i class="far fa-calendar-alt"></i> Fecha</th>
-                                    <th scope="col"><i class="fas fa-head-side-virus"></i> Casos</th>
-                                    <th scope="col"><i class="fas fa-arrows-alt-v"></i> Variacion</th>
-                                    <th scope="col"><i class="fas fa-exclamation-triangle"></i> Defunciones</th>
-                                    <th scope="col"><i class="fas fa-arrows-alt-v"></i> Variacion</th>
+                                    <th scope="col"><i class="fas fa-search"></i> Registro</th>
+                                    <th scope="col">
+                                        <i class="fas fa-arrows-alt-v"></i>
+                                        <a class="underline" data-toggle="tooltip" data-placement="top" title="Incremento o decremento de casos con respecto al día anterior.">Variacion</a>
+                                    </th>
+                                    <th scope="col"><i class="fas fa-search"></i> Registro</th>
+                                    <th scope="col">
+                                        <i class="fas fa-arrows-alt-v"></i>
+                                        <a class="underline" data-toggle="tooltip" data-placement="bottom" title="Incremento o decremento de defunciones con respecto al día anterior.">Variacion</a>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @for ($i = 0; $i <= 9; $i++)
                                     <tr>
-                                        <td scope="row">{{ $city->registries[$i]->getFormattedDate("d/F/Y") }}</td>
+                                        <td scope="row">{{ $city->registries[$i]->getFormattedDate("d-F-Y") }}</td>
                                         <td>{{$city->registries[$i]->infections}}</td>
                                         <td
                                             @if (substr($city->registries[$i]->diffInfections, 0, 1) == "+")
@@ -100,6 +111,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="/js/helpers.js"></script>
     <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
         const URL_API = "{{env('APP_URL')}}/api/cities";
     </script>
     <script src="/js/city.js"></script>
