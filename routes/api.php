@@ -17,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::post('cities', 'CityAPIController@getAll');
 Route::post('cities/{id}', 'CityAPIController@find');
 Route::post('cities/{id}/data', 'CityAPIController@getCityData');
+Route::post('cities/{id}/accumulated', 'CityAPIController@getAccumulated');

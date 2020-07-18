@@ -15,22 +15,17 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::select(
-            'cities.id',
-            'cities.name',
-            DB::raw('sum(registries.infections) as infections'),
-            DB::raw('sum(registries.deaths) as deaths')
+        $cities = City::
+            select(
+                'cities.id',
+                'cities.name',
+                DB::raw('sum(registries.infections) as infections'),
             )
-                ->join('registries', 'cities.id', '=', 'registries.city_id')
-                ->groupBy('cities.id', 'cities.name')
-                ->orderBy('deaths', 'DESC')
-                ->get();
-
-        // return $cities[0]->registries;
-        // // $cities = City::with(['infections' => function ($q) {
-        // //     $q->orderBy('whateverField', 'asc/desc');
-        // //   }])->find($schoolId);
-        return view('city.index', compact('cities'));
+            ->join('registries', 'cities.id', '=', 'registries.city_id')
+            ->groupBy('cities.id', 'cities.name')
+            ->orderBy('infections', 'DESC')
+            ->get();
+        return view('city.index', array('cities' => $cities));
     }
 
     /**
@@ -65,14 +60,15 @@ class CityController extends Controller
         try {
             $name = strtoupper($name);
             $city = City::where('name', $name)->firstOrFail();
-            for ($i=0; $i < $city->registries->count(); $i++) {
-                $currentRegistry = $city->registries[$i];
+            $registries = $city->registries()->orderBy('date', 'desc')->get();
+            for ($i=0; $i < $registries->count(); $i++) {
+                $currentRegistry = $registries[$i];
                 if ($i == $city->registries->count() -1) {
                     $currentRegistry['diffInfections'] = 0;
                     $currentRegistry['diffDeaths'] = 0;
                 }
                 else{
-                    $lastRegistry = $city->registries[$i + 1];
+                    $lastRegistry = $registries[$i + 1];
                     $diffInfections = $currentRegistry->infections - $lastRegistry->infections;
                     $diffDeaths = $currentRegistry->deaths - $lastRegistry->deaths;
 
@@ -80,9 +76,9 @@ class CityController extends Controller
                     $currentRegistry['diffInfections'] = ($diffInfections >= 0) ? "+$diffInfections" : $diffInfections;
                 }
             }
-            return view('city', compact('city'));
+            return view('city', ['city' => $city, 'registries' => $registries]);
         } catch (\Throwable $th) {
-            abort(404);
+            \abort(404);
         }
 
     }

@@ -11,7 +11,7 @@
                 <div class="header">
                     <h2>Datos de la ciudad de <strong>{{$city->name}}</strong>.</h2><br>
                     <p class="text">
-                        Datos al {{$city->registries[0]->getFormattedDate("l\\, d \\d\\e F \\d\\e Y")}}.
+                        Datos al {{$city->getLastData('date', 'l, d \\d\\e F \\d\\e Y')}}.
                     </p>
                     <div class="data">
                         <span class="data-item">
@@ -75,26 +75,26 @@
                             <tbody>
                                 @for ($i = 0; $i <= 9; $i++)
                                     <tr>
-                                        <td scope="row">{{ $city->registries[$i]->getFormattedDate("d-F-Y") }}</td>
-                                        <td>{{$city->registries[$i]->infections}}</td>
+                                        <td scope="row">{{ $registries[$i]->getFormattedDate("d-F-Y") }}</td>
+                                        <td>{{$registries[$i]->infections}}</td>
                                         <td
-                                            @if (substr($city->registries[$i]->diffInfections, 0, 1) == "+")
+                                            @if (substr($registries[$i]->diffInfections, 0, 1) == "+")
                                                 class="inc"
                                             @else
                                                 class="dec"
                                             @endif
                                         >
-                                            {{$city->registries[$i]->diffInfections}}
+                                            {{$registries[$i]->diffInfections}}
                                         </td>
-                                        <td>{{$city->registries[$i]->deaths}}</td>
+                                        <td>{{$registries[$i]->deaths}}</td>
                                         <td
-                                            @if (substr($city->registries[$i]->diffDeaths, 0, 1) == "+")
+                                            @if (substr($registries[$i]->diffDeaths, 0, 1) == "+")
                                                 class="inc"
                                             @else
                                                 class="dec"
                                             @endif
                                         >
-                                            {{$city->registries[$i]->diffDeaths}}
+                                            {{$registries[$i]->diffDeaths}}
                                         </td>
                                     </tr>
                                 @endfor

@@ -5,12 +5,33 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\City;
 use App\Registry;
+use Illuminate\Support\Facades\DB;
 
 class CityAPIController extends Controller
 {
-    function getAll()
+    function getAll(Request $request)
     {
-        $cities =  City::all();
+        $orderBy = $request->query('orderBy');
+        $cities;
+        if (!is_null($orderBy)) {
+            if ($orderBy == 'infections' || $orderBy == 'deaths') {
+                $cities = City::select(
+                    "cities.id",
+                    "cities.name",
+                    DB::raw("sum(registries.$orderBy) as total"),
+                    )
+                        ->join('registries', 'cities.id', '=', 'registries.city_id')
+                        ->groupBy('cities.name', 'cities.id')
+                        ->orderBy('total', 'DESC')
+                        ->get();
+            }
+            else{
+                return response()->json('El tipo de orden es invalido', 400);
+            }
+        }
+        else{
+            $cities =  City::all();
+        }
         return $cities;
     }
 
@@ -52,5 +73,19 @@ class CityAPIController extends Controller
             }
             return response($message, 400);
         }
+    }
+
+    public function getAccumulated($id)
+    {
+        $cities = City::select(
+            "cities.name",
+            DB::raw("sum(registries.infections) as infections"),
+            DB::raw("sum(registries.deaths) as deaths"),
+            )
+                ->join('registries', 'cities.id', '=', 'registries.city_id')
+                ->where('cities.id', $id)
+                ->groupBy('cities.name')
+                ->get();
+        return response()->json($cities[0], 200);;
     }
 }

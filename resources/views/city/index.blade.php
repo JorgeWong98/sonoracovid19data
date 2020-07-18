@@ -36,9 +36,9 @@
                         @foreach ($cities as $city)
                             <tr class='clickable-row' data-href='ciudades/{{strtolower($city->name)}}'>
                                 <td><i class="fas fa-external-link-alt"></i> - {{$city->name}}</td>
-                                <td>{{$city->registries[0]->getFormattedDate('d-F-Y')}}</td>
-                                <td>{{$city->registries[0]->infections}}</td>
-                                <td>{{$city->registries[0]->deaths}}</td>
+                                <td>{{$city->getLastData('date')}}</td>
+                                <td>{{$city->getLastData('infections')}}</td>
+                                <td>{{$city->getLastData('deaths')}}</td>
                                 <td>{{number_format($city->getTotal('infections'))}}</td>
                                 <td>{{number_format($city->getTotal('deaths'))}}</td>
                                 <td>
@@ -65,9 +65,11 @@
 @endsection
 
 @section('js')
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="/js/helpers.js"></script>
     <script>
-        var cities = {!! json_encode($cities->toArray(), JSON_HEX_TAG) !!};
+        const URL_API = "{{env('APP_URL')}}/api/cities";
+
         jQuery(document).ready(function($) {
             $(".clickable-row").click(function() {
                 window.location = $(this).data("href");

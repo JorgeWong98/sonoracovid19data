@@ -32,17 +32,6 @@ class City extends Model
 
     // --------- Funciones ----------------
 
-    // public function getTotalInfections(){
-
-    //     $cities = City::select(
-    //         DB::raw('sum(registries.infections) as infections'),
-    //         )
-    //             ->join('registries', 'cities.id', '=', 'registries.city_id')
-    //             ->where('cities.id', $this->attributes['id'])
-    //             ->get();
-    //     return \number_format($cities[0]->infections);
-    // }
-
     public function getTotal($type){
 
         $cities = City::select(
@@ -52,5 +41,21 @@ class City extends Model
                 ->where('cities.id', $this->attributes['id'])
                 ->get();
         return $cities[0]["total"];
+    }
+
+    public function getLastData($column, $format = null){
+        $data = Registry::where('city_id', $this->attributes['id'])
+                            ->orderBy('date', 'DESC')
+                            ->get();
+        if ($column != 'date') {
+            return $data[0]["$column"];
+        }
+        else {
+            $registry = $data[0];
+            $format = (is_null($format) ? 'd-F-Y' : $format);
+
+            $date = $registry->getFormattedDate($format);
+            return $date;
+        }
     }
 }
