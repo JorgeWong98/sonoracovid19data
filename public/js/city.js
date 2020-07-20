@@ -1,4 +1,5 @@
 var ctx = document.getElementById('chartLine').getContext('2d');
+const spinner = document.getElementById('spinner');
 
 const selectPeriod = document.getElementById('period');
 const selectCity = document.getElementById('city_id');
@@ -6,6 +7,7 @@ let period_value = selectPeriod.value, city_value = selectCity.value;
 
 fetchAsync(`${URL_API}/${selectCity.value}/data?lastDays=${selectPeriod.value}`)
     .then(data => {
+        spinner.style.display = 'none';
         updateChartOne(data);
     });
 
@@ -62,11 +64,10 @@ const updateChartOne = (data) => {
                     afterTickToLabelConversion: function(data){
                         var xLabels = data.ticks;
                         const number = Math.round(xLabels.length / 3);
-                        if (xLabels.length > 14) {
+                        if (xLabels.length > 7) {
                             xLabels.forEach(function (labels, i) {
                                 if (i != 0 && i != xLabels.length - 1) {
                                     if (i % number != 0){
-                                        // console.log(`${i}/${number} = ${i%number}`);
                                         xLabels[i] = '';
                                     }
                                 }
@@ -74,12 +75,10 @@ const updateChartOne = (data) => {
                         }
                     },
                     ticks: {
-                        // Make labels vertical
-                        // https://stackoverflow.com/questions/28031873/make-x-label-horizontal-in-chartjs
                         autoSkip: false,
-                    maxRotation: 0,
-                    minRotation: 0
-                      }
+                        maxRotation: 0,
+                        minRotation: 0
+                    }
                 }]
             }
         }

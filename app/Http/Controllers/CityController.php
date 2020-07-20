@@ -25,7 +25,14 @@ class CityController extends Controller
             ->groupBy('cities.id', 'cities.name')
             ->orderBy('infections', 'DESC')
             ->get();
-        return view('city.index', array('cities' => $cities));
+
+        $func = function($valor) {
+            return $valor['id'];
+        };
+
+        $ids = array_map($func, $cities->toArray());
+
+        return view('city.index', array('cities' => $cities, 'ids' => $ids));
     }
 
     /**

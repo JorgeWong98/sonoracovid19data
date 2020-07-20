@@ -45,11 +45,47 @@ table{
     justify-content: center;
 }
 
+table.table * {
+    vertical-align: middle !important;
+}
+
+table.table .date{
+    min-width: 118px;
+}
+
+table.table .icon{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+table.table .icon *:nth-child(1){
+    margin-right: 3px;
+}
+
 .underline{
     padding-bottom: .5px;
     border-bottom: 2px dashed #000 !important;
     cursor: pointer;
 }
+
+.chart-container{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+    min-height: 200px;
+    text-align: center;
+}
+
+.chart-container .chartLine{
+    display: none;
+}
+
+.chart-container .spinner div:nth-child(1){
+    margin-bottom: 10px;
+}
+
 
 @media only screen and (max-width: 767px){
     .header h2{

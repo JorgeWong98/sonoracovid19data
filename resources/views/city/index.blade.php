@@ -23,20 +23,20 @@
                             <th colspan="3">Acumulado</th>
                         </tr>
                         <tr>
-                            <th scope="col"><i class="fas fa-city"></i> Ciudad</th>
-                            <th scope="col"><i class="far fa-calendar-alt"></i> Fecha</th>
-                            <th scope="col"><i class="fas fa-head-side-virus"></i> Casos</th>
-                            <th scope="col"><i class="fas fa-exclamation-triangle"></i> Defunciones</th>
-                            <th scope="col"><i class="fas fa-head-side-virus"></i> Casos</th>
-                            <th scope="col"><i class="fas fa-exclamation-triangle"></i> Defunciones</th>
-                            <th scope="col"><i class="fas fa-percentage"></i> de Letalidad</th>
+                            <th scope="col"><a class="icon"><i class="fas fa-city"></i> Ciudad</a></th>
+                            <th scope="col"><a class="icon"><i class="far fa-calendar-alt"></i> Fecha</a></th>
+                            <th scope="col"><a class="icon"><i class="fas fa-head-side-virus"></i> Casos</a></th>
+                            <th scope="col"><a class="icon"><i class="fas fa-exclamation-triangle"></i> Defunciones</a></th>
+                            <th scope="col"><a class="icon"><i class="fas fa-head-side-virus"></i> Casos</a></th>
+                            <th scope="col"><a class="icon"><i class="fas fa-exclamation-triangle"></i> Defunciones</a></th>
+                            <th scope="col"><a class="icon"><i class="fas fa-percentage"></i> de Letalidad</a></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($cities as $city)
                             <tr class='clickable-row' data-href='ciudades/{{strtolower($city->name)}}'>
-                                <td><i class="fas fa-external-link-alt"></i> - {{$city->name}}</td>
-                                <td>{{$city->getLastData('date')}}</td>
+                                <td><a><i class="fas fa-external-link-alt"></i> - {{$city->name}}</a></td>
+                                <td class="date">{{$city->getLastData('date')}}</td>
                                 <td>{{$city->getLastData('infections')}}</td>
                                 <td>{{$city->getLastData('deaths')}}</td>
                                 <td>{{number_format($city->getTotal('infections'))}}</td>
@@ -58,7 +58,15 @@
             <p class="text">
                 Gráfica comparativa de los datos acumulados.
             </p>
-            <canvas id="chartBar"></canvas>
+            <div id="chart-container" class="chart-container">
+                <div id="spinner" class="spinner">
+                    <div class="spinner-border text-primary ml-auto" role="status" aria-hidden="true"></div>
+                    <div>
+                        <strong>Cargando datos ...</strong>
+                    </div>
+                </div>
+                <canvas class="chartBar" id="chartBar"></canvas>
+            </div>
         </div>
     </div>
 </div>
@@ -69,6 +77,8 @@
     <script src="/js/helpers.js"></script>
     <script>
         const URL_API = "{{env('APP_URL')}}/api/cities";
+
+        var cities = {!! json_encode($ids, JSON_HEX_TAG) !!};
 
         jQuery(document).ready(function($) {
             $(".clickable-row").click(function() {

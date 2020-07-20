@@ -41,9 +41,17 @@
                         <option value="31">31 días</option>
                     </select>
                 </p>
-                <canvas id="chartLine"></canvas>
+                <div id="chart-container" class="chart-container">
+                    <div id="spinner" class="spinner">
+                        <div class="spinner-border text-primary ml-auto" role="status" aria-hidden="true"></div>
+                        <div>
+                            <strong>Cargando datos ...</strong>
+                        </div>
+                    </div>
+                    <canvas class="chartLine" id="chartLine"></canvas>
                 </div>
-                <hr>
+                </div>
+                <br>
                 <div class="row table-container">
                     <div class="col-md-12">
                         <p class="text">
@@ -59,23 +67,27 @@
                                     <th colspan="2"><i class="fas fa-exclamation-triangle"></i> Defunciones</th>
                                 </tr>
                                 <tr>
-                                    <th scope="col"><i class="far fa-calendar-alt"></i> Fecha</th>
-                                    <th scope="col"><i class="fas fa-search"></i> Registro</th>
+                                    <th scope="col"><a class="icon"><i class="far fa-calendar-alt"></i> Fecha</a></th>
+                                    <th scope="col"><a class="icon"><i class="fas fa-search"></i> Registro</a></th>
                                     <th scope="col">
-                                        <i class="fas fa-arrows-alt-v"></i>
-                                        <a class="underline" data-toggle="tooltip" data-placement="top" title="Incremento o decremento de casos con respecto al día anterior.">Variacion</a>
+                                        <a class="icon">
+                                            <i class="fas fa-arrows-alt-v"></i>
+                                            <span class="underline" data-toggle="tooltip" data-placement="top" title="Incremento o decremento de casos con respecto al día anterior.">Variacion</span>
+                                        </a>
                                     </th>
-                                    <th scope="col"><i class="fas fa-search"></i> Registro</th>
+                                    <th scope="col"><a class="icon"><i class="fas fa-search"></i> Registro</th></a>
                                     <th scope="col">
-                                        <i class="fas fa-arrows-alt-v"></i>
-                                        <a class="underline" data-toggle="tooltip" data-placement="bottom" title="Incremento o decremento de defunciones con respecto al día anterior.">Variacion</a>
+                                        <a class="icon">
+                                            <i class="fas fa-arrows-alt-v"></i>
+                                            <span class="underline" data-toggle="tooltip" data-placement="bottom" title="Incremento o decremento de defunciones con respecto al día anterior.">Variacion</span>
+                                        </a>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @for ($i = 0; $i <= 9; $i++)
                                     <tr>
-                                        <td scope="row">{{ $registries[$i]->getFormattedDate("d-F-Y") }}</td>
+                                        <td class="date" scope="row">{{ $registries[$i]->getFormattedDate("d-F-Y") }}</td>
                                         <td>{{$registries[$i]->infections}}</td>
                                         <td
                                             @if (substr($registries[$i]->diffInfections, 0, 1) == "+")
