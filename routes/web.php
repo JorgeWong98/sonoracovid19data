@@ -24,5 +24,7 @@ Route::get('ciudades/comparar', function (){
     return view('compare');
 });
 
+Route::get('dashboard/registro', 'RegistryController@index');
+Route::post('dashboard/registro', 'RegistryController@index');
 Route::get('dashboard/registro/crear', 'RegistryController@create');
 Route::post('dashboard/registro/crear', 'RegistryController@store');

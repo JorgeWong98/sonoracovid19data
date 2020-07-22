@@ -15,9 +15,36 @@ class RegistryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $date = $request['date'];
+        if (is_null($date)) {
+            return view('dashboard.edit_registry');
+        }
+        else{
+            $cities = City::orderBy('name', 'desc')->get();
+            $registries = Registry::where('date', $date)->get();
+
+            foreach ($cities as $city) {
+                foreach ($registries as $registry) {
+                    if ($city->id == $registry->city_id) {
+                        $city['infections'] = $registry->infections;
+                        $city['deaths'] = $registry->deaths;
+                        $city['registry'] = $registry->id;
+                    }
+                }
+                if (!isset($city->infections)) {
+                    $city['infections'] = 0;
+                    $city['deaths'] = 0;
+                    $city['registry'] = 0;
+                }
+            }
+            return view('dashboard.edit_registry',
+                [
+                    'cities' => $cities,
+                    'date' => $date
+                ]);
+        }
     }
 
     /**
@@ -93,9 +120,9 @@ class RegistryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+
     }
 
     /**
