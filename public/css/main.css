@@ -2,6 +2,11 @@
     font-family: 'Roboto', sans-serif;
 }
 
+header div div{
+    display: flex;
+    justify-content: space-between;
+}
+
 header h2{
     font-weight: 700;
     display: flex;

@@ -3,6 +3,24 @@
     flex-direction: column;
 }
 
+.find-city{
+    display: flex;
+    align-items: baseline;
+}
+
+.find-city p{
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.find-city .form-group{
+    display: flex;
+}
+
+.find-city p{
+    margin-right: 10px;
+}
+
 table.table{
     text-align: center;
     align-self: center;
@@ -34,7 +52,7 @@ table.table .icon *:nth-child(1){
     cursor: pointer;
 }
 
-.minor{
+.caption{
     font-size: 15px;
     font-weight: bold;
     font-style: italic;

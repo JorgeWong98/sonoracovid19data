@@ -8,11 +8,18 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            <div class="form-inline find-city">
+                <p>
+                    Consulta los datos de una ciudad en específico:
+                </p>
+                <div class="form-group">
+                    <input class="form-control mr-2" type="search" placeholder="Ingrese una ciudad" aria-label="Search" id="tags">
+                    <button class="btn btn-primary" type="submit" id="btn_find_city">Buscar</button>
+                </div>
+            </div>
+            <br>
             <p class="text">
                 Últimos datos y acumulados de las ciudades de Sonora. Se está trabajando para incluir el resto de ciudades del estado.
-            </p>
-            <p class="text">
-                Puede acceder a los datos de cada ciudad dando clic en su respectivo registro.
             </p>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
@@ -34,27 +41,30 @@
                     </thead>
                     <tbody>
                         @foreach ($cities as $city)
-                            <tr class='clickable-row' data-href='ciudades/{{strtolower($city->name)}}'>
-                                <td><a><i class="fas fa-external-link-alt"></i> - {{$city->name}}</a></td>
-                                <td class="date">{{$city->getLastData('date')}}</td>
-                                <td>{{$city->getLastData('infections')}}</td>
-                                <td>{{$city->getLastData('deaths')}}</td>
-                                <td>{{number_format($city->getTotal('infections'))}}</td>
-                                <td>{{number_format($city->getTotal('deaths'))}}</td>
-                                <td>
-                                    @php
+                        <tr class='clickable-row' data-href='ciudades/{{strtolower($city->name)}}'>
+                            <td>{{$city->name}}</td>
+                            <td class="date">{{$city->getLastData('date')}}</td>
+                            <td>{{$city->getLastData('infections')}}</td>
+                            <td>{{$city->getLastData('deaths')}}</td>
+                            <td>{{number_format($city->getTotal('infections'))}}</td>
+                            <td>{{number_format($city->getTotal('deaths'))}}</td>
+                            <td>
+                                @php
                                         $lethality = $city->getTotal('deaths') /  $city->getTotal('infections') * 100;
                                         $format = number_format($lethality, 2);
                                         echo("$format%");
-                                    @endphp
+                                        @endphp
                                 </td>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            <br>
-            <br>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <p class="caption">
+                        Puede acceder a los datos de cada ciudad dando clic en su respectivo registro.
+                    </p>
+                </div>
+                <br>
+                <br>
             <p class="text">
                 Gráfica comparativa de los datos acumulados.
             </p>
@@ -66,6 +76,25 @@
                     </div>
                 </div>
                 <canvas class="chartBar" id="chartBar"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sonora Covid</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <a>La ciudad que intenta buscar no se encuentra en nuestro sistema.</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -87,4 +116,5 @@
         });
     </script>
     <script src="/js/index.js"></script>
+    <script src="/js/city_find.js"></script>
 @endsection
