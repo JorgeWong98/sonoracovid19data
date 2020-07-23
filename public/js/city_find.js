@@ -3,7 +3,10 @@ let city_id = 0;
 
 var availableTags = [
     "Nogales",
-    "Hermosillo"
+    "Hermosillo",
+    "Cajeme",
+    "Guaymas",
+    "Empalme"
 ];
 
 let tags = $( "#tags" );
