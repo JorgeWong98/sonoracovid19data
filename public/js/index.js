@@ -7,10 +7,12 @@ const fetchAsyncMulti = async (urls) => {
     )
 }
 
-let urls = [];
-cities.forEach(city => {
-    urls.push(`${URL_API}/${city.id}/accumulated`);
+let urls = cities.map((city) => {
+    console.log(city);
+    return `${URL_API}/${city.id}/accumulated`;
 });
+
+console.log(urls);
 
 fetchAsyncMulti(urls)
     .then(response => {
