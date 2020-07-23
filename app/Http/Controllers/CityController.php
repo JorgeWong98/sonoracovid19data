@@ -26,13 +26,22 @@ class CityController extends Controller
             ->orderBy('infections', 'DESC')
             ->get();
 
-        $func = function($valor) {
+        $funcGetId = function($valor) {
             return $valor['id'];
         };
 
-        $ids = array_map($func, $cities->toArray());
+        $funcGetName = function($valor) {
+            return $valor['name'];
+        };
 
-        return view('city.index', array('cities' => $cities, 'ids' => $ids));
+        $ids = array_map($funcGetId, $cities->toArray());
+        $names = array_map($funcGetName, $cities->toArray());
+
+        return view('city.index', [
+            'cities' => $cities,
+            'ids' => $ids,
+            'names' => $names
+        ]);
     }
 
     /**
@@ -83,7 +92,7 @@ class CityController extends Controller
                     $currentRegistry['diffInfections'] = ($diffInfections >= 0) ? "+$diffInfections" : $diffInfections;
                 }
             }
-            return view('city', ['city' => $city, 'registries' => $registries]);
+            return view('city.show', ['city' => $city, 'registries' => $registries]);
         } catch (\Throwable $th) {
             \abort(404);
         }

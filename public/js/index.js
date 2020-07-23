@@ -9,7 +9,7 @@ const fetchAsyncMulti = async (urls) => {
 
 let urls = [];
 cities.forEach(city => {
-    urls.push(`${URL_API}/${city}/accumulated`);
+    urls.push(`${URL_API}/${city.id}/accumulated`);
 });
 
 fetchAsyncMulti(urls)

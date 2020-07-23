@@ -59,10 +59,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <p class="caption">
-                        Puede acceder a los datos de cada ciudad dando clic en su respectivo registro.
-                    </p>
                 </div>
+                <p class="caption">
+                    Puede acceder a los datos de cada ciudad dando clic en su respectivo registro.
+                </p>
                 <br>
                 <br>
             <p class="text">
@@ -107,7 +107,7 @@
     <script>
         const URL_API = "{{env('APP_URL')}}/api/cities";
 
-        var cities = {!! json_encode($ids, JSON_HEX_TAG) !!};
+        var cities = {!! json_encode($cities, JSON_HEX_TAG) !!};
 
         jQuery(document).ready(function($) {
             $(".clickable-row").click(function() {

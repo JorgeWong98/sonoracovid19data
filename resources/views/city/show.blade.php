@@ -33,8 +33,7 @@
                 <div class="graph-container">
                     <input type="hidden" id="city_id" value="{{$city->id}}">
                 <p class="text">
-
-                    Datos graficados diarios. Periodo: Últimos
+                    Datos diarios graficados. Periodo: Últimos
                     <select class="form-control" style="width: auto; display:inline-block" id="period">
                         <option value="7" selected>7 días</option>
                         <option value="14">14 días</option>
@@ -68,14 +67,14 @@
                                 </tr>
                                 <tr>
                                     <th scope="col"><a class="icon"><i class="far fa-calendar-alt"></i> Fecha</a></th>
-                                    <th scope="col"><a class="icon"><i class="fas fa-search"></i> Registro</a></th>
+                                    <th scope="col"><a class="icon"><i class="fas fa-search"></i> Cantidad</a></th>
                                     <th scope="col">
                                         <a class="icon">
                                             <i class="fas fa-arrows-alt-v"></i>
                                             <span class="underline" data-toggle="tooltip" data-placement="top" title="Incremento o decremento de casos con respecto al día anterior.">Variacion</span>
                                         </a>
                                     </th>
-                                    <th scope="col"><a class="icon"><i class="fas fa-search"></i> Registro</th></a>
+                                    <th scope="col"><a class="icon"><i class="fas fa-search"></i> Cantidad</th></a>
                                     <th scope="col">
                                         <a class="icon">
                                             <i class="fas fa-arrows-alt-v"></i>
