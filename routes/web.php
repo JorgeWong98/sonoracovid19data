@@ -28,3 +28,7 @@ Route::get('dashboard/registro', 'RegistryController@index');
 Route::post('dashboard/registro', 'RegistryController@index');
 Route::get('dashboard/registro/crear', 'RegistryController@create');
 Route::post('dashboard/registro/crear', 'RegistryController@store');
+
+Route::get('login', 'LoginController@form')->name('login');
+Route::post('login', 'LoginController@attempt');
+Route::post('logout', 'LoginController@logout');

@@ -23,6 +23,21 @@
         <div class="container">
             <div class="col-md-12">
                 <h2><a href="/ciudades">Datos Covid-19 Sonora</a></h2>
+                @if (Auth::check())
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{Auth::user()->name}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{url('dashboard/registro')}}"><i class="fas fa-search"></i> Registros</a>
+                        <div class="dropdown-divider"></div>
+                        <form class="dropdown-item" action="/logout" method="post">
+                            @csrf
+                            <i class="fas fa-sign-out-alt"></i> <input type="submit" value="Logout">
+                        </form>
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
     </header>

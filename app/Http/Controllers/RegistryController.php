@@ -10,6 +10,9 @@ use \App\City;
 
 class RegistryController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -76,7 +79,7 @@ class RegistryController extends Controller
         try {
             $today = Date::now()->setTimezone('America/Tijuana');
             $registry = Registry::where('date', $today->format('Y-m-d'));
-            return $registry;
+            // return $registry;
             $cities = [];
             foreach ($request->all() as $key => $item) {
                 if (gettype($key) == "integer") {

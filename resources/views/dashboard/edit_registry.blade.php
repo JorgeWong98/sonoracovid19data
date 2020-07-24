@@ -54,8 +54,8 @@
                                     <td><input disabled="disabled" type="text" class="form-control" value="{{$city->infections}}"></td>
                                     <td><input disabled="disabled" type="text" class="form-control" value="{{$city->deaths}}"></td>
                                     <td>
-                                        <a href="{{url("dashboard/registro/$city->registry")}}">Editar</a>
-                                        <a href="#">Eliminar</a>
+                                        {{-- <a href="{{url("dashboard/registro/$city->registry")}}">Editar</a>
+                                        <a href="#">Eliminar</a> --}}
                                     </td>
                                 </tr>
                                 @endforeach

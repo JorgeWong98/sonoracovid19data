@@ -2,15 +2,6 @@
 
 @section('styles')
 <style>
-    html {
-        height: 100%;
-    }
-    body {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
     div.info{
         text-align: center;
         font-size: 35px;
