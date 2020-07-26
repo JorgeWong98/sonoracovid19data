@@ -23,3 +23,12 @@ Route::get('/ciudades/{name}', 'CityController@show');
 Route::get('ciudades/comparar', function (){
     return view('compare');
 });
+
+Route::get('dashboard/registros', 'RegistryController@index');
+Route::post('dashboard/registros', 'RegistryController@index');
+Route::get('dashboard/registros/crear', 'RegistryController@create');
+Route::post('dashboard/registros/crear', 'RegistryController@store');
+
+Route::get('acceder-sistema', 'LoginController@form')->name('login');
+Route::post('login', 'LoginController@attempt');
+Route::post('logout', 'LoginController@logout');

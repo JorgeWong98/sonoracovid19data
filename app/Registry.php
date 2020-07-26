@@ -11,6 +11,8 @@ class Registry extends Model
         'infections', 'deaths', 'date', 'city_id'
     ];
 
+    public $timestamps = false;
+
      // -------- Relaciones ------------
 
     public function city()
