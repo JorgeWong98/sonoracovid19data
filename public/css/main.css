@@ -2,8 +2,6 @@
     font-family: 'Roboto', sans-serif;
 }
 
-<<<<<<< HEAD
-=======
 html {
     height: 100%;
 }
@@ -14,7 +12,6 @@ body {
     justify-content: space-between;
 }
 
->>>>>>> dashboard-admin
 header div div{
     display: flex;
     justify-content: space-between;
