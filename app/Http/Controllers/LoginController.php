@@ -22,7 +22,7 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect('dashboard/registro');
+            return redirect('dashboard/registros');
         }
         else{
             return redirect()->back();

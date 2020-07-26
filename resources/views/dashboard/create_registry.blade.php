@@ -25,10 +25,10 @@
     <div class="row">
         <div class="col-md-6">
             <h2>Nuevo registro</h2>
-            <form action="{{url('dashboard/registro/crear')}}" method="post">
+            <form action="{{url('dashboard/registros/crear')}}" method="post">
                 @csrf
                 <div class="form-group">
-                    <label for="">Fecha: 19/07/2020</label>
+                    <label for="">Fecha: {{$today->format('d/m/Y')}}</label>
                 </div>
                 <table class="table table-bordered">
                     <thead>

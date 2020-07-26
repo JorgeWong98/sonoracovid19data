@@ -1,0 +1,18 @@
+div.container {
+    flex-grow: 1;
+}
+div.row div:nth-child(2){
+    display: flex;
+    align-items:flex-start;
+    justify-content: flex-end;
+}
+
+form .row .date{
+    display: flex;
+    align-items: baseline;
+}
+
+form .row .date label{
+    font-weight: 700;
+    font-size: 17px;
+}

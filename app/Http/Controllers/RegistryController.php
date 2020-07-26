@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Jenssegers\Date\Date;
 
 use \App\Registry;
@@ -22,7 +23,7 @@ class RegistryController extends Controller
     {
         $date = $request['date'];
         if (is_null($date)) {
-            return view('dashboard.edit_registry');
+            return view('dashboard.index_registry');
         }
         else{
             $cities = City::orderBy('name', 'desc')->get();
@@ -42,7 +43,7 @@ class RegistryController extends Controller
                     $city['registry'] = 0;
                 }
             }
-            return view('dashboard.edit_registry',
+            return view('dashboard.index_registry',
                 [
                     'cities' => $cities,
                     'date' => $date
@@ -61,10 +62,14 @@ class RegistryController extends Controller
         $registry = Registry::where('date', $today->format('Y-m-d'))->count();
         if ($registry == 0) {
             $cities = City::all();
-            return view('dashboard.create_registry', ['cities' => $cities]);
+            return view('dashboard.create_registry', [
+                    'cities' => $cities,
+                    'today' => $today
+                ]);
         }
         else {
-            return "Ya existe registro del dia de hoy";
+            Session::flash('message', 'Ya existe registro del dia de hoy.');
+            return redirect()->back();
         }
     }
 
@@ -77,9 +82,8 @@ class RegistryController extends Controller
     public function store(Request $request)
     {
         try {
-            $today = Date::now()->setTimezone('America/Tijuana');
-            $registry = Registry::where('date', $today->format('Y-m-d'));
-            // return $registry;
+            $today = Date::now()->setTimezone('America/Tijuana')->format('Y-m-d');
+            $registry = Registry::where('date', $today);
             $cities = [];
             foreach ($request->all() as $key => $item) {
                 if (gettype($key) == "integer") {
@@ -100,9 +104,10 @@ class RegistryController extends Controller
                     'date' => $today
                 ]);
             }
-            return "Okay";
+            Session::flash('message', 'Registro completado.');
+            return redirect('dashboard/registros');
         } catch (\Throwable $th) {
-            return "Error";
+            return $th->getMessage();
         }
     }
 
