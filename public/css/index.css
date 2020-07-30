@@ -26,6 +26,10 @@ table.table{
     align-self: center;
 }
 
+table.table thead tr.sortable-table th {
+    cursor: pointer;
+}
+
 table.table * {
     vertical-align: middle !important;
 }

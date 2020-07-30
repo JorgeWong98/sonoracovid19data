@@ -29,7 +29,7 @@
                             <th colspan="3">Último registro</th>
                             <th colspan="3">Acumulado</th>
                         </tr>
-                        <tr>
+                        <tr class="sortable-table">
                             <th scope="col"><a class="icon"><i class="fas fa-city"></i> Ciudad</a></th>
                             <th scope="col"><a class="icon"><i class="far fa-calendar-alt"></i> Fecha</a></th>
                             <th scope="col"><a class="icon"><i class="fas fa-head-side-virus"></i> Casos</a></th>
