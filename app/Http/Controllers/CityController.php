@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Jenssegers\Date\Date;
+
 use App\City;
 
 class CityController extends Controller
@@ -15,6 +17,9 @@ class CityController extends Controller
      */
     public function index()
     {
+        $lastDate = \App\Registry::orderBy('date', 'desc')->take(1)->get()[0]['date'];
+        $date = Date::parse($lastDate)->format('d/m/Y');
+
         $cities = City::
             select(
                 'cities.id',
@@ -22,25 +27,14 @@ class CityController extends Controller
                 DB::raw('sum(registries.infections) as infections'),
             )
             ->join('registries', 'cities.id', '=', 'registries.city_id')
+            ->where('date', $lastDate)
             ->groupBy('cities.id', 'cities.name')
             ->orderBy('infections', 'DESC')
             ->get();
 
-        $funcGetId = function($valor) {
-            return $valor['id'];
-        };
-
-        $funcGetName = function($valor) {
-            return $valor['name'];
-        };
-
-        $ids = array_map($funcGetId, $cities->toArray());
-        $names = array_map($funcGetName, $cities->toArray());
-
         return view('city.index', [
             'cities' => $cities,
-            'ids' => $ids,
-            'names' => $names
+            'lastDate' => $date
         ]);
     }
 

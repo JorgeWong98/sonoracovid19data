@@ -28,6 +28,19 @@ table.table{
 
 table.table thead tr.sortable-table th {
     cursor: pointer;
+
+}
+
+table.table thead tr.sortable-table th#sort{
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+table.table thead tr.sortable-table th#sort i{
+    display: flex;
+    align-items: center;
 }
 
 table.table * {
@@ -77,4 +90,20 @@ table.table .icon *:nth-child(1){
 
 .chart-container .spinner div:nth-child(1){
     margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 991px){
+    table.table thead tr.sortable-table th#sort{
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 767px){
+    table.table thead tr.sortable-table th#sort{
+        display: table-cell;
+    }
+
+    table.table thead tr.sortable-table th#sort i{
+        display: inline-block;
+    }
 }

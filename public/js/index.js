@@ -48,6 +48,8 @@ fetchAsyncMulti(urls)
 
 // Sort table
 
+let column_sort = document.getElementById('sort');
+
 const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
 
 const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
@@ -56,7 +58,34 @@ const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
 
 document.querySelectorAll('.sortable-table th').forEach(th => th.addEventListener('click', (() => {
     const table = th.closest('table');
+    let current = th.getAttribute('data-asc') == 'true';
     Array.from(table.querySelectorAll('tbody tr'))
-        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), current = !current))
         .forEach(tr => table.querySelector('tbody').appendChild(tr) );
+    th.setAttribute('data-asc', current);
+
+    //Logica para ocultar y mostrar los iconos de orden
+    if (current) {
+        column_sort.lastChild.remove();
+        column_sort.removeAttribute('id')
+        column_sort = th;
+        th.setAttribute('id', 'sort');
+        const html = `<i class="fas fa-sort-up"></i>`;
+        column_sort.insertAdjacentHTML('beforeend', html)
+    }
+    else{
+        if (th == column_sort) {
+            column_sort.lastChild.remove();
+            const html = `<i class="fas fa-sort-down"></i>`;
+            column_sort.insertAdjacentHTML('beforeend', html)
+        }
+        else{
+            column_sort.lastChild.remove();
+            column_sort.removeAttribute('id')
+            column_sort = th;
+            th.setAttribute('id', 'sort');
+            const html = `<i class="fas fa-sort-down"></i>`;
+            column_sort.insertAdjacentHTML('beforeend', html)
+        }
+    }
 })));

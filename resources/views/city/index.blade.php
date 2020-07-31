@@ -26,16 +26,15 @@
                     <thead>
                         <tr>
                             <th colspan="1"></th>
-                            <th colspan="3">Último registro</th>
+                            <th colspan="3">Último registro: {{$lastDate}}</th>
                             <th colspan="3">Acumulado</th>
                         </tr>
                         <tr class="sortable-table">
                             <th scope="col"><a class="icon"><i class="fas fa-city"></i> Ciudad</a></th>
-                            <th scope="col"><a class="icon"><i class="far fa-calendar-alt"></i> Fecha</a></th>
                             <th scope="col"><a class="icon"><i class="fas fa-head-side-virus"></i> Casos</a></th>
                             <th scope="col"><a class="icon"><i class="fas fa-exclamation-triangle"></i> Defunciones</a></th>
                             <th scope="col"><a class="icon"><i class="fas fa-head-side-virus"></i> Casos</a></th>
-                            <th scope="col"><a class="icon"><i class="fas fa-exclamation-triangle"></i> Defunciones</a></th>
+                            <th id="sort" scope="col"><a class="icon"><i class="fas fa-exclamation-triangle"></i> Defunciones</a><i class="fas fa-sort-down"></i></th>
                             <th scope="col"><a class="icon"><i class="fas fa-percentage"></i> de Letalidad</a></th>
                         </tr>
                     </thead>
@@ -43,19 +42,19 @@
                         @foreach ($cities as $city)
                         <tr class='clickable-row' data-href='ciudades/{{strtolower($city->name)}}'>
                             <td>{{$city->name}}</td>
-                            <td class="date">{{$city->getLastData('date')}}</td>
                             <td>{{$city->getLastData('infections')}}</td>
                             <td>{{$city->getLastData('deaths')}}</td>
                             <td>{{number_format($city->getTotal('infections'))}}</td>
                             <td>{{number_format($city->getTotal('deaths'))}}</td>
                             <td>
                                 @php
-                                        $lethality = $city->getTotal('deaths') /  $city->getTotal('infections') * 100;
-                                        $format = number_format($lethality, 2);
-                                        echo("$format%");
-                                        @endphp
-                                </td>
-                            </tr>
+                                $lethality = $city->getTotal('deaths') /  $city->getTotal('infections') * 100;
+                                $format = number_format($lethality, 2);
+                                $format = strlen(strval($format)) == 5 ? $format : "0$format";
+                                echo("$format%");
+                                @endphp
+                            </td>
+                        </tr>
                             @endforeach
                         </tbody>
                     </table>
