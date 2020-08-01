@@ -26,7 +26,7 @@
                     <thead>
                         <tr>
                             <th colspan="1"></th>
-                            <th colspan="3">Último registro: {{$lastDate}}</th>
+                            <th colspan="2">Último registro: {{$lastDate}}</th>
                             <th colspan="3">Acumulado</th>
                         </tr>
                         <tr class="sortable-table">
