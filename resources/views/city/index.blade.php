@@ -50,7 +50,6 @@
                                 @php
                                 $lethality = $city->getTotal('deaths') /  $city->getTotal('infections') * 100;
                                 $format = number_format($lethality, 2);
-                                $format = strlen(strval($format)) == 5 ? $format : "0$format";
                                 echo("$format%");
                                 @endphp
                             </td>
