@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Jenssegers\Date\Date;
+use Illuminate\Support\Facades\Validator;
 
 use \App\Registry;
 use \App\City;
@@ -83,29 +84,61 @@ class RegistryController extends Controller
     {
         try {
             $today = Date::now()->setTimezone('America/Tijuana')->format('Y-m-d');
-            $registry = Registry::where('date', $today);
-            $cities = [];
-            foreach ($request->all() as $key => $item) {
-                if (gettype($key) == "integer") {
-                    $city = City::findOrFail($key);
-                    array_push($cities, [
-                        'id' => $city->id,
-                        'infections' => $item[0],
-                        'deaths' => $item[1],
-                    ]);
-                }
+
+            $rules = [
+                'date' => "required|date_format:Y-m-d|before_or_equal:$today",
+            ];
+
+            $messages = [
+                'date.required' => "La <strong>fecha</strong> es requerida.",
+                'date.date_format' => "La <strong>fecha</strong> tiene un formato incorrecto.",
+                'date.before_or_equal' => "La <strong>fecha</strong> no debe ser posterior al día de hoy."
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            if ($validator->fails()) {
+                return redirect()
+                            ->back()
+                            ->withInput()
+                            ->withErrors($validator);
             }
 
-            foreach ($cities as $city) {
-                $registry = Registry::create([
-                    'city_id' => $city['id'],
-                    'infections' => $city['infections'],
-                    'deaths' => $city['deaths'],
-                    'date' => $today
-                ]);
+            $count = Registry::where('date', $request->date)->count();
+
+            if ($count == 0) {
+                $registry = Registry::where('date', $today);
+                $cities = [];
+                foreach ($request->all() as $key => $item) {
+                    if (gettype($key) == "integer") {
+                        $city = City::findOrFail($key);
+                        array_push($cities, [
+                            'id' => $city->id,
+                            'infections' => $item[0],
+                            'deaths' => $item[1],
+                        ]);
+                    }
+                }
+
+                foreach ($cities as $city) {
+                    $registry = Registry::create([
+                        'city_id' => $city['id'],
+                        'infections' => $city['infections'],
+                        'deaths' => $city['deaths'],
+                        'date' => $request->date
+                    ]);
+                }
+                Session::flash('message', 'Registro completado.');
+                return redirect('dashboard/registros');
             }
-            Session::flash('message', 'Registro completado.');
-            return redirect('dashboard/registros');
+            else{
+                $errors = ['custom_error' => "Ya existen registros con la <strong>fecha</strong> seleccionada."];
+
+                return redirect()
+                            ->back()
+                            ->withInput()
+                            ->withErrors($errors);
+            }
         } catch (\Throwable $th) {
             return $th->getMessage();
         }

@@ -23,7 +23,7 @@ class CityController extends Controller
             )
             ->join('registries', 'cities.id', '=', 'registries.city_id')
             ->groupBy('cities.id', 'cities.name')
-            ->orderBy('infections', 'DESC')
+            ->orderBy('deaths', 'DESC')
             ->get();
 
         $func = function($valor) {
