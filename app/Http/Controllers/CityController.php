@@ -29,7 +29,7 @@ class CityController extends Controller
             ->join('registries', 'cities.id', '=', 'registries.city_id')
             ->where('date', $lastDate)
             ->groupBy('cities.id', 'cities.name')
-            ->orderBy('infections', 'DESC')
+            ->orderBy('deaths', 'DESC')
             ->get();
 
         return view('city.index', [

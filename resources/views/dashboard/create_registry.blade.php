@@ -27,8 +27,8 @@
             <h2>Nuevo registro</h2>
             <form action="{{url('dashboard/registros/crear')}}" method="post">
                 @csrf
-                <div class="form-group">
-                    <label for="">Fecha: {{$today->format('d/m/Y')}}</label>
+                <div class="form-group" style="display:flex; align-items:baseline;">
+                    <label style="margin-right: 15px;">Fecha: </label><input class="form-control" type="date" name="date" value="{{old('date', $today->format('Y-m-d'))}}" max="{{$today->format('Y-m-d')}}">
                 </div>
                 <table class="table table-bordered">
                     <thead>
@@ -55,6 +55,11 @@
                 <button class="btn btn-primary" type="submit">Aceptar</button>
             </form>
         </div>
+        @if (count($errors) > 0)
+        <div class="col-md-6">
+            @include('partials._alert')
+        </div>
+        @endif
     </div>
 </div>
 @endsection

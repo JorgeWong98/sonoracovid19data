@@ -1,6 +1,6 @@
 <style>
     .toast{
-        width: 250px;
+        width: 400px;
     }
     .toast .toast-header img{
         width:25px;
