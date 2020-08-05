@@ -24,7 +24,7 @@ class CityController extends Controller
             select(
                 'cities.id',
                 'cities.name',
-                DB::raw('sum(registries.infections) as infections'),
+                DB::raw('sum(registries.deaths) as deaths'),
             )
             ->join('registries', 'cities.id', '=', 'registries.city_id')
             ->where('date', $lastDate)
