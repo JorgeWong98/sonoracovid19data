@@ -95,7 +95,7 @@ tr.sortable-table th:first-child,
 td:first-child {
     position: sticky;
     left: 0px;
-    background-color: rgba(0, 0, 0, .05);
+    background-color: #F5F5F5;
 }
 
 @media only screen and (max-width: 991px) {
