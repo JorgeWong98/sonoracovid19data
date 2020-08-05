@@ -24,12 +24,12 @@ class CityController extends Controller
             select(
                 'cities.id',
                 'cities.name',
-                DB::raw('sum(registries.deaths) as deaths'),
+                DB::raw('sum(registries.infections) as infections'),
             )
             ->join('registries', 'cities.id', '=', 'registries.city_id')
             ->where('date', $lastDate)
             ->groupBy('cities.id', 'cities.name')
-            ->orderBy('deaths', 'DESC')
+            ->orderBy('infections', 'DESC')
             ->get();
 
         return view('city.index', [

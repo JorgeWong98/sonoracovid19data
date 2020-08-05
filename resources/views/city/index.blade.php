@@ -31,10 +31,10 @@
                         </tr>
                         <tr class="sortable-table">
                             <th scope="col"><a class="icon"><i class="fas fa-city"></i> Ciudad</a></th>
-                            <th scope="col"><a class="icon"><i class="fas fa-head-side-virus"></i> Casos</a></th>
+                            <th id="sort" scope="col"><a class="icon"><i class="fas fa-head-side-virus"></i> Casos</a><i class="fas fa-sort-down"></i></th>
                             <th scope="col"><a class="icon"><i class="fas fa-exclamation-triangle"></i> Defunciones</a></th>
                             <th scope="col"><a class="icon"><i class="fas fa-head-side-virus"></i> Casos</a></th>
-                            <th id="sort" scope="col"><a class="icon"><i class="fas fa-exclamation-triangle"></i> Defunciones</a><i class="fas fa-sort-down"></i></th>
+                            <th scope="col"><a class="icon"><i class="fas fa-exclamation-triangle"></i> Defunciones</a></th>
                             <th scope="col"><a class="icon"><i class="fas fa-percentage"></i> de Letalidad</a></th>
                         </tr>
                     </thead>

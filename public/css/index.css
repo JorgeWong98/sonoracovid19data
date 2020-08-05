@@ -3,35 +3,16 @@
     flex-direction: column;
 }
 
-<<<<<<< HEAD
-.find-city{
-=======
 .find-city {
->>>>>>> dashboard-admin
     display: flex;
     align-items: baseline;
 }
 
-<<<<<<< HEAD
-.find-city p{
-=======
 .find-city p {
->>>>>>> dashboard-admin
     font-size: 18px;
     margin-bottom: 5px;
 }
 
-<<<<<<< HEAD
-.find-city .form-group{
-    display: flex;
-}
-
-.find-city p{
-    margin-right: 10px;
-}
-
-table.table{
-=======
 .find-city .form-group {
     display: flex;
 }
@@ -41,34 +22,22 @@ table.table{
 }
 
 table.table {
->>>>>>> dashboard-admin
     text-align: center;
     align-self: center;
 }
 
 table.table thead tr.sortable-table th {
     cursor: pointer;
-<<<<<<< HEAD
-
-}
-
-table.table thead tr.sortable-table th#sort{
-=======
 }
 
 table.table thead tr.sortable-table th#sort {
->>>>>>> dashboard-admin
     display: inline-flex;
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
 }
 
-<<<<<<< HEAD
-table.table thead tr.sortable-table th#sort i{
-=======
 table.table thead tr.sortable-table th#sort i {
->>>>>>> dashboard-admin
     display: flex;
     align-items: center;
 }
@@ -99,11 +68,7 @@ table.table .icon *:nth-child(1) {
     cursor: pointer;
 }
 
-<<<<<<< HEAD
-.caption{
-=======
 .caption {
->>>>>>> dashboard-admin
     font-size: 15px;
     font-weight: bold;
     font-style: italic;
@@ -126,10 +91,6 @@ table.table .icon *:nth-child(1) {
     margin-bottom: 10px;
 }
 
-<<<<<<< HEAD
-@media only screen and (max-width: 991px){
-    table.table thead tr.sortable-table th#sort{
-=======
 tr.sortable-table th:first-child,
 td:first-child {
     position: sticky;
@@ -139,22 +100,10 @@ td:first-child {
 
 @media only screen and (max-width: 991px) {
     table.table thead tr.sortable-table th#sort {
->>>>>>> dashboard-admin
         flex-direction: column;
     }
 }
 
-<<<<<<< HEAD
-@media only screen and (max-width: 767px){
-    table.table thead tr.sortable-table th#sort{
-        display: table-cell;
-    }
-
-    table.table thead tr.sortable-table th#sort i{
-        display: inline-block;
-    }
-}
-=======
 @media only screen and (max-width: 767px) {
     table.table thead tr.sortable-table th#sort {
         display: table-cell;
@@ -163,4 +112,3 @@ td:first-child {
         display: inline-block;
     }
 }
->>>>>>> dashboard-admin
