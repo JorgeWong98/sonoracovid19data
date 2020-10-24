@@ -49,10 +49,11 @@
         <div class="container">
             <div class="col-md-12">
                 <span class="item">
-                    Pagina diseñada: <i class="fab fa-twitter-square"></i> <a href="https://twitter.com/JorgeLSWong" target="_blank">@JorgeLSWong</a>
+                    <div style="margin-bottom: 15px;">Programador: <a href="https://twitter.com/JorgeLSWong" target="_blank">@JorgeLSWong</a></div>
+                    <div>Colaboradora: <a href="https://www.instagram.com/patty.sotoo/" target="_blank">@Patty.sotoo</a></div>
                 </span>
-                <span class="item">
-                    Datos recopilados de <i class="fab fa-twitter-square"></i> <a href="https://twitter.com/ssaludsonora" target="_blank">@SaludSonora</a>
+                <span class="item" style="display: flex; align-items: center;">
+                    Fuente de datos: <a style="display: inline-block; margin-left: 5px;" href="https://datos.covid-19.conacyt.mx/" target="_blank">CONACYT</a>
                 </span>
             </div>
         </div>

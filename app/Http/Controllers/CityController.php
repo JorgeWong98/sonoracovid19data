@@ -17,25 +17,29 @@ class CityController extends Controller
      */
     public function index()
     {
-        $lastDate = \App\Registry::orderBy('date', 'desc')->take(1)->get()[0]['date'];
-        $date = Date::parse($lastDate)->format('d/m/Y');
+        try {
+            $lastDate = \App\Registry::orderBy('date', 'desc')->take(1)->get()[0]['date'];
+            $date = Date::parse($lastDate)->format('d/m/Y');
 
-        $cities = City::
-            select(
-                'cities.id',
-                'cities.name',
-                DB::raw('sum(registries.infections) as infections'),
-            )
-            ->join('registries', 'cities.id', '=', 'registries.city_id')
-            ->where('date', $lastDate)
-            ->groupBy('cities.id', 'cities.name')
-            ->orderBy('infections', 'DESC')
-            ->get();
+            $cities = City::
+                select(
+                    'cities.id',
+                    'cities.name',
+                    DB::raw('sum(registries.infections) as infections'),
+                )
+                ->join('registries', 'cities.id', '=', 'registries.city_id')
+                ->where('date', $lastDate)
+                ->groupBy('cities.id', 'cities.name')
+                ->orderBy('infections', 'DESC')
+                ->get();
 
-        return view('city.index', [
-            'cities' => $cities,
-            'lastDate' => $date
-        ]);
+            return view('city.index', [
+                'cities' => $cities,
+                'lastDate' => $date
+            ]);
+        } catch (\Throwable $th) {
+            return view('city.index');
+        }
     }
 
     /**

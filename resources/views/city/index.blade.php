@@ -7,6 +7,11 @@
 @section('content')
 <div class="container">
     <div class="row">
+        @if (!isset($cities))
+        <div class="col-md-12">
+            <h2>No hay datos en el sistema.</h2>
+        </div>
+        @else
         <div class="col-md-12">
             <div id="find-city" class="form-inline find-city">
                 <p>
@@ -76,6 +81,7 @@
                 <canvas class="chartBar" id="chartBar"></canvas>
             </div>
         </div>
+        @endif
     </div>
 </div>
 
@@ -100,6 +106,7 @@
 @endsection
 
 @section('js')
+    @if (isset($cities))
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script src="/js/helpers.js"></script>
     <script>
@@ -115,4 +122,5 @@
     </script>
     <script src="/js/index.js"></script>
     <script src="/js/city_find.js"></script>
+    @endif
 @endsection
